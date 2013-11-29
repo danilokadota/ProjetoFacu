@@ -3,38 +3,53 @@
 	<title>Galeria de Produtos</title>
 	<style>
 		#container{
-			width: 100%;
+			width: 1366px;
+
 		}
 		#cabecelho{
-			width: 100%;
-			height: 70px;
+			width: 1366px;
+			height: 130px;
 			background-color: red;
-			display: inline;
+			float: left;
 		}
 		#logotipo{
 			width: 150px;
 			height: 80px;
+			margin-left: 20px;
 			float: left;
-
 		}
 		#title_cab{
-			margin-left:300px; 
-			width: 300px;
-			margin: 0 auto;
+			margin-left:400px; 
+			width: 235px;
 			margin-top: 30px;
-			
+			float: left;
+		}
+		#form{
+			width: 250px;
+			height: 130px;
+			text-align: center;
+			border:3px solid black;
+			border-radius: 3px;
+			margin-left: 900px;
+			float: left;
 		}
 		#lateral{
 			width: 25%;
 			height: 605px;
-			float: left;
 			background-color: green;
+			float: left;
 		}
 		#conteudo{
 			width: 75%;
 			height: 605px;
-			float: right;
 			background-color: yellow;
+			float: left;
+		}
+		#rodape{
+			width: 1366px;
+			height: 80px;
+			background-color: blue;
+			float: left;	
 		}
 		#cont{
 			width: 33%;
@@ -43,22 +58,10 @@
 			border:1px solid black;
 			text-align: center;
 		}
-		#rodape{
-			width: 100%;
-			height: 80px;
-			clear: both;
-			background-color: blue;
-		}
 		#img{
 			margin-left:20px;
 			width: 150px;
 			height: 60px;
-		}
-		#form{
-			margin-left: 1000px;
-			width: 400px;
-			height: 80px;
-			text-align: center;
 		}
 	</style>
 	</head>
@@ -68,8 +71,8 @@
 				<img src="img/logotipo.png" alt="logotipo" id="logotipo">
 				<h2 id="title_cab">Thunders Toys LTDA.</h2>
 				<div id="form">
-					<h4>Área Administrativa</h4>
 					<form action="userautentication.php" name="loginform" method="post">
+					<p><b>Área Administrativa</b></p>
 						Login: <input type="text" name="usuario"><br/>
 						Senha: <input type="password" name="senha"><br/>
 						<input type="submit" value="Login">
@@ -80,9 +83,9 @@
 				<h3>Categorias</h3>
 				<?php
 					mysql_connect("localhost","root","");
-					mysql_select_db("projeto") or 
+					mysql_select_db("catalogo") or 
 						die("ERRO MYSQL:" . mysql_error());
-					$sql="SELECT * FROM categorias ORDER BY nome";
+					$sql="SELECT * FROM categorias ORDER BY categoria";
 					
 					$rs=mysql_query($sql)  or 
 						die("ERRO MYSQL:" . mysql_error());
@@ -93,7 +96,7 @@
 						$codCategoria=mysql_result($rs , $n, 'codigo');
 						
 						echo "<a href='index.php?categoria=$codCategoria'>";
-						echo mysql_result($rs , $n, 'nome');
+						echo mysql_result($rs , $n, 'categoria');
 						echo "</a>";
 						
 						echo '<br>';
@@ -106,7 +109,7 @@
 					<p><b>001</b><br/>
 					Helicoptero sky <br/>
 					R$50,00</p>
-					<a href="">+Detalhes</a>
+					<a href="detalheProduto.php?produto=010011">+detalhes</a>
 				</div>
 				<div id="cont">
 					<img src="img/brinquedo  Helicoptero 2.jpg" id="img"alt="">
